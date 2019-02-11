@@ -1,3 +1,5 @@
+# 0.1.3
+- Formatted readme.
 # 0.1.2
 - Updated readme.
 - Addressed suggestions from dart analyzer.

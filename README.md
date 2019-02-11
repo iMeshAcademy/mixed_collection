@@ -17,7 +17,7 @@ The main features of this custom data structure is listed below.
 
 Example usage.
 
-```language
+```Dart
 bool filterByNameStartsWith(dynamic entry, dynamic data) {
   if (null != entry && null != data) {
     return (entry.getValue('') as String).startsWith(data);

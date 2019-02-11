@@ -1,5 +1,5 @@
 name: mixed_collection
-version: 0.1.2
+version: 0.1.3
 description: >-
   A mixed collection, which supports filtering and sorting based on configurable filters and sorters. 
 authors:
