@@ -1,3 +1,6 @@
+# 0.1.2
+- Updated readme.
+- Addressed suggestions from dart analyzer.
 # 0.1.1
 - Added additional APIs. Fixed issues with cached items.
 # 0.1.0

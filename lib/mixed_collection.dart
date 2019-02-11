@@ -4,8 +4,8 @@
 
 library mixed_collection;
 
-import 'package:meta/meta.dart';
 import 'package:eventify/eventify.dart';
+import 'package:meta/meta.dart';
 
 part 'src/collectionentry.dart';
 part 'src/filterable.dart';

@@ -36,11 +36,7 @@ mixin Filterable<S, T extends CollectionEntry<S>> {
   /// [force] - This parameter is used to perform force filtering. If supplied -
   /// filter operation will be performed without checking internal state.
   ///
-  filterBy(
-      [dynamic configOrCallback,
-      bool notify,
-      bool force,
-      dynamic data = null]) {
+  filterBy([dynamic configOrCallback, bool notify, bool force, dynamic data]) {
     applyFilter(configOrCallback, notify ?? true, force ?? false, data);
   }
 
@@ -49,7 +45,7 @@ mixin Filterable<S, T extends CollectionEntry<S>> {
   /// Refer [filterBy] to check valid configurations.
   @protected
   void applyFilter(dynamic filter,
-      [bool notify = true, bool bForce = false, dynamic data = null]) {
+      [bool notify = true, bool bForce = false, dynamic data]) {
     // Perform sanity of input fields.
     if (null != filter && this._filters.contains(filter) == false) {
       this._filters.add(filter);
