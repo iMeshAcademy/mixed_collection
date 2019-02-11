@@ -1,3 +1,5 @@
+# 0.1.4
+- Changed meta version to be compatible with flutter application.
 # 0.1.3
 - Formatted readme.
 # 0.1.2
