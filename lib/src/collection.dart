@@ -143,6 +143,7 @@ class Collection<S, T extends CollectionEntry<S>>
   /// [callback] - A [CollectionOperationCallback] callback.
   void add(T rec, CollectionOperationCallback callback) {
     this._allRecords.add(rec);
+    this._cachedRecords = null;
     applySorter(this._allRecords, null, false, true);
     if (this.filtered || hasFilters) {
       applyFilter(null, false, true);
@@ -162,6 +163,7 @@ class Collection<S, T extends CollectionEntry<S>>
   void remove(T model, CollectionOperationCallback callback) {
     if (null != model && this._allRecords.contains(model)) {
       this._allRecords.remove(model);
+      this._cachedRecords = null;
       if (this.filtered) {
         applyFilter(null, false, true);
       }
@@ -193,6 +195,7 @@ class Collection<S, T extends CollectionEntry<S>>
 
     if (index >= 0) {
       this._allRecords.replaceRange(index, index + 1, [model]);
+      this._cachedRecords = null;
       applySorter(this._allRecords, null, false, true);
       applyFilter(null, false, true);
       if (null != callback) {
@@ -220,6 +223,7 @@ class Collection<S, T extends CollectionEntry<S>>
   ///
   void clearRecords(CollectionOperationCallback callback) {
     this._allRecords.clear();
+    this._cachedRecords = null;
     applySorter(this._allRecords, null, false, true);
     applyFilter(null, false, true);
     if (null != callback) {
@@ -253,4 +257,77 @@ class Collection<S, T extends CollectionEntry<S>>
       ignoreFilter || false == this._filtered
           ? this.getAllRecords().indexOf(rec)
           : this.getFilteredRecords().indexOf(rec);
+
+  int firstIndexWhere(bool test(T element),
+      [int start = 0, bool ignoreFilter = false]) {
+    int i = start >= 0 && start < this.length ? start : 0;
+    List<T> recs = ignoreFilter || false == this._filtered
+        ? this.getAllRecords()
+        : this.getFilteredRecords();
+    for (; i < recs.length; i++) {
+      var rec = recs[i];
+      if (test(rec)) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  int lastIndexWhere(bool test(T element),
+      [int start = 0, bool ignoreFilter = false]) {
+    List<T> recs = ignoreFilter || false == this._filtered
+        ? this.getAllRecords()
+        : this.getFilteredRecords();
+
+    int i = start >= 0 && start < recs.length ? start : recs.length - 1;
+
+    for (; i >= 0; i--) {
+      var rec = recs[i];
+      if (test(rec)) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  T firstWhere(bool test(T element), [bool ignoreFilter = false]) {
+    List<T> recs = ignoreFilter || false == this._filtered
+        ? this.getAllRecords()
+        : this.getFilteredRecords();
+    for (var i = 0; i < recs.length; i++) {
+      var rec = recs[i];
+      if (test(rec)) {
+        return rec;
+      }
+    }
+
+    return null;
+  }
+
+  List<T> take(bool where(T element), [bool ignoreFilter = false]) {
+    List<T> items = List<T>();
+    List<T> recs = ignoreFilter || false == this._filtered
+        ? this.getAllRecords()
+        : this.getFilteredRecords();
+    for (var i = 0; i < recs.length; i++) {
+      var rec = recs[i];
+      if (where(rec)) {
+        items.add(rec);
+      }
+    }
+
+    return items;
+  }
+
+  operator [](int index) {
+    if (index < this.length && index >= 0) {
+      return this.records[index];
+    }
+
+    return null;
+  }
+
+  int get length => this.records.length;
 }

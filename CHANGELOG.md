@@ -1,3 +1,5 @@
+# 0.1.1
+- Added additional APIs. Fixed issues with cached items.
 # 0.1.0
 - Code documentation. Provided cached collection for faster repeated retrieval.
 # 0.0.9 
