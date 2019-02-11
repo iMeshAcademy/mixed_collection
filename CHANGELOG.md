@@ -1,3 +1,5 @@
+# 0.1.5
+- Updated filterable API to consider data passed to the function, if the filter don't have a value field.
 # 0.1.4
 - Changed meta version to be compatible with flutter application.
 # 0.1.3
