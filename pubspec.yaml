@@ -1,0 +1,15 @@
+name: mixed_collection
+version: 0.1.0
+description: >-
+  A mixed collection, which supports filtering and sorting based on configurable filters and sorters. 
+authors:
+- Ajeesh B Nair <ajeeshklr@gmail.com>
+- iMeshAcademy <imeshconnect@gmail.com>
+homepage: "https://github.com/iMeshAcademy"
+repository: https://github.com/iMeshAcademy/mixed_collection
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+dependencies:
+  eventify : '>0.1.1 <1.0.0'
+dev_dependencies:
+  test: ^1.0.0
