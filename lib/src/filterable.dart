@@ -97,6 +97,7 @@ mixin Filterable<S, T extends CollectionEntry<S>> {
             if (filter is Map<String, dynamic>) {
               dynamic val = rec.getValue(filter["property"]);
               dynamic filterValue = filter["value"];
+              filterValue = filterValue ?? data;
               bool exactMatch = filter["exactMatch"] ?? true;
               String rule = filter["rule"] ?? "";
               bool caseSensitive = filter["caseSensitive"] ?? false;
